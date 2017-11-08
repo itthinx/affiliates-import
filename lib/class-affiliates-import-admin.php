@@ -135,6 +135,12 @@ class Affiliates_Import_Admin {
 		_e( 'Import users from file', 'affiliates-import' );
 		echo '<input type="file" name="file" />';
 		echo '</label>';
+		echo ' ';
+		echo '<a href="#file-format-and-fields">';
+		echo '<span class="description">';
+		esc_html_e( 'File Format and Fields', 'affiliates-import' );
+		echo '</span>';
+		echo '</a>';
 		echo '</p>';
 
 		echo '<p>';
@@ -198,9 +204,103 @@ class Affiliates_Import_Admin {
 
 		printf( '<input type="hidden" name="action" value="%s" />', esc_attr( self::REQUEST_IMPORT ) );
 
+		echo '<p>';
+		echo __( 'An import can not be undone! When in doubt, run the import in small batches or on a test installation first.', 'affiliates-import' );
+		echo '</p>';
+
+		echo '<p>';
+		echo __( 'To import very large sets, several imports using the same file repeatedly can be done.', 'affiliates-import' );
+		echo ' ';
+		echo __( 'In this case, enabling <em>Suppress warnings</em> is useful to avoid being alerted about existing entries.', 'affiliates-import' );
+		echo '</p>';
+
 		echo '</div>';
 		echo '</form>';
 		echo '</div>';
+
+		echo '</div>'; // .manage
+
+		echo '<div>';
+		echo '<h2 id="file-format-and-fields">';
+		esc_html_e( 'File Format and Fields', 'affiliates-import' );
+		echo '</h2>';
+		echo '</div>';
+		echo '<div class="manage" style="padding:2em;margin-right:1em;">';
+
+		echo '<p>';
+		echo sprintf( __( 'Please also refer to the <a href="%s">Documentation</a>.', 'affiliates-import' ), esc_url( 'http://docs.itthinx.com/document/affiliates-import/' ) );
+		echo '</p>';
+
+		echo '<p>';
+		echo __( 'To import affiliates, use a plain text file with values separated by <em>tabs</em>.', 'affiliates-import' );
+		echo '<p>';
+
+		echo '<p>';
+		printf(
+			__( 'These fields are defined in the Affiliates <a href="%s">Registration</a> settings and are recognized in the optional <em>Column Declaration</em> by their <em>Field Name</em> in the file to import.', 'affiliates-import' ),
+			esc_url( add_query_arg( 'section', 'registration', admin_url( 'admin.php?page=affiliates-admin-settings' ) ) )
+		);
+		echo '</p>';
+
+		$fields = Affiliates_Import_Process::get_affiliates_registration_fields();
+		echo '<table>';
+		echo '<tr>';
+		echo '<th>';
+		echo esc_html__( 'Field Name', 'affiliates-import' );
+		echo '</th>';
+		echo '<th>';
+		echo esc_html__( 'Field Label', 'affiliates-import' );
+		echo '</th>';
+		echo '<th>';
+		echo esc_html__( 'Enabled', 'affiliates-import' );
+		echo '</th>';
+		echo '<th>';
+		echo esc_html__( 'Required', 'affiliates-import' );
+		echo '</th>';
+		echo '</tr>';
+		foreach( $fields as $name => $field ) {
+			echo '<tr>';
+			echo '<td>';
+			echo '<code>' . esc_html( $name ) . '</code>';
+			echo '</td>';
+			echo '<td>';
+			echo esc_html( $field['label'] );
+			echo '</td>';
+			echo '<td>';
+			echo '<em>';
+			echo $field['enabled'] ? esc_html__( 'Yes', 'affiliates-import' ) : esc_html__( 'No', 'affiliates-import' );
+			echo '</td>';
+			echo '<td>';
+			echo $field['required'] ? esc_html__( 'Yes', 'affiliates-import' ) : esc_html__( 'No', 'affiliates-import' );
+			echo '</td>';
+			echo '</tr>';
+		}
+		echo '</table>';
+
+		echo '<p>';
+		_e( 'Without a <em>Column Declaration</em>, the entries in the imported file are expected to appear in the order as listed.', 'affiliates-import' );
+		echo ' ';
+		_e( 'A different order can be indicated with an explicit <em>Column Declaration</em>, by starting a line with the <code>@</code> symbol followed by one or more <em>Field Names</em>.', 'affiliates-import' );
+		echo '</p>';
+
+		echo '<p>';
+		echo '<label>';
+		_e( 'Example:', 'affiliates-import' );
+		echo '<br/>';
+		echo '<textarea rows="3" style="font-family:monospace;width:100%" readonly="readonly">';
+		echo '@first_name	last_name	user_email	user_login';
+		echo "\n";
+		echo 'John	Doe	test1@example.com	jdoe';
+		echo "\n";
+		echo 'Mary	River	affiliate@example.com	mriver';
+		echo "\n";
+		echo '</textarea>';
+		echo '<br/>';
+		echo '<span class="description">';
+		echo __( 'Note that the values are separated by <strong>tabs</strong>.', 'affiliates-import' );
+		echo '</span>';
+		echo '</label>';
+		echo '</p>';
 
 		echo '</div>'; // .manage
 
