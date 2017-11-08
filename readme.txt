@@ -13,6 +13,8 @@ Import affiliate accounts with [Affiliates](https://wordpress.org/plugins/affili
 == Description ==
 
 This plugin allows to import affiliate accounts from a text file into [Affiliates](https://wordpress.org/plugins/affiliates/), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).
+It is an extension and requires one of these to import affiliates on your site from a text file using values separated by tabs.
+It supports custom fields as defined under Affiliates > Registation.
 
 For detailed usage instructions, please refer to the [Documentation](http://docs.itthinx.com/document/affiliates-import/).
 
@@ -46,6 +48,17 @@ Note that you can install the plugins from your WordPress installation directly:
 You can also upload and extract them in your site's `/wp-content/plugins/` directory or use the *Upload* option.
 
 == Frequently Asked Questions ==
+
+= Where can I find the documentation for this tool? =
+
+The documentation is located at [Affiliates Import](http://docs.itthinx.com/document/affiliates-import/).
+
+= What plugins are required to import affiliates with this tool? =
+
+You can use any of these:
+- [Affiliates](https://wordpress.org/plugins/affiliates/) (free) or
+- [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) (premium) or
+- [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/) (premium)
 
 == Screenshots ==
 
