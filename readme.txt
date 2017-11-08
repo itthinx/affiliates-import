@@ -4,7 +4,8 @@ Donate link: http://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, import, affiliate plugin, affiliates plugin
 Requires at least: 4.0.0
 Tested up to: 4.8.3
-Stable tag: 1.0.0
+Requires PHP: 5.5.0
+Stable tag: 1.1.0
 License: GPLv3
 
 Import affiliate accounts with [Affiliates](https://wordpress.org/plugins/affiliates/), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).
@@ -12,6 +13,19 @@ Import affiliate accounts with [Affiliates](https://wordpress.org/plugins/affili
 == Description ==
 
 This plugin allows to import affiliate accounts from a text file into [Affiliates](https://wordpress.org/plugins/affiliates/), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).
+
+For detailed usage instructions, please refer to the [Documentation](http://docs.itthinx.com/document/affiliates-import/).
+
+The text file be in tab-separated values format. Example of an input file:
+
+  @user_login	user_email	first_name	last_name
+  affiliate1	affiliate1@example.com	Maria	One
+  affiliate2	affiliate2@example.com	Matthew	Two
+  affiliate3	affiliate3@example.com	Joanna	Three
+  affiliate4	affiliate4@example.com	Joseph	Four
+
+The first line with the `@` sign indicates the column order of the fields below.
+You can change the order of the fields and skip any except the `user_email`.
 
 Requirements:
 
@@ -37,9 +51,18 @@ You can also upload and extract them in your site's `/wp-content/plugins/` direc
 
 Please refer to the Documentation for details:
 
-[Affiliates Import](http://docs.itthinx.com/document/affiliates-import/)
+- [Affiliates Import](http://docs.itthinx.com/document/affiliates-import/)
 
 == Changelog ==
 
+= 1.1.0 =
+* Added support for additional registration fields as defined under Affiliates > Registration.
+* Improved the admin section with additional field and file format information.
+* Updated the readme.txt (adds the "Requires PHP" tag, adds the Upgrade Notice section and provides a short example).
+
 = 1.0.0 =
 * Initial release.
+
+== Upgrade Notice ==
+
+This version adds support for custom fields defined under Affiliates > Registration and improves the admin section under Affiliates > Import.
