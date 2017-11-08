@@ -34,14 +34,7 @@ class Affiliates_Import_Process {
 
 	private static $admin_messages = array();
 
-	private static $fields = array(
-		'user_email',
-		'user_login',
-		'first_name',
-		'last_name',
-		'user_url',
-		'user_pass'
-	);
+	private static $fields = array();
 
 	private static $notify_users = true;
 

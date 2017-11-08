@@ -237,25 +237,6 @@ class Affiliates_Import_Admin {
 			esc_url( add_query_arg( 'section', 'registration', admin_url( 'admin.php?page=affiliates-admin-settings' ) ) )
 		);
 		echo '</p>';
-		echo '<p>';
-		_e( 'Without a <em>Column Declaration</em>, the entries in the imported file are expected to appear in the order as listed below.', 'affiliates-import' );
-		echo ' ';
-		_e( 'A different order can be indicated with an explicit <em>Column Declaration</em>, by starting a line with the <code>@</code> symbol followed by one or more <em>Field Names</em>.', 'affiliates-import' );
-		echo '</p>';
-		echo '<p>';
-		echo '<label>';
-		_e( 'Example:', 'affiliates-import' );
-		echo '<br/>';
-		echo '<textarea rows="3" style="font-family:monospace;width:100%" readonly="readonly">';
-		echo '@first_name	last_name	user_email	user_login';
-		echo "\n";
-		echo 'John	Doe	test1@example.com	jdoe';
-		echo "\n";
-		echo 'Mary	River	affiliate@example.com	mriver';
-		echo "\n";
-		echo '</textarea>';
-		echo '</label>';
-		echo '</p>';
 
 		$fields = Affiliates_Import_Process::get_affiliates_registration_fields();
 		echo '<table>';
@@ -283,14 +264,35 @@ class Affiliates_Import_Admin {
 			echo '</td>';
 			echo '<td>';
 			echo '<em>';
-			echo $field['enabled'] ? esc_html__( 'enabled', 'affiliates-import' ) : esc_html__( 'not enabled', 'affiliates-import' );
+			echo $field['enabled'] ? esc_html__( 'Yes', 'affiliates-import' ) : esc_html__( 'No', 'affiliates-import' );
 			echo '</td>';
 			echo '<td>';
-			echo $field['required'] ? esc_html__( 'required', 'affiliates-import' ) : esc_html__( 'not required', 'affiliates-import' );
+			echo $field['required'] ? esc_html__( 'Yes', 'affiliates-import' ) : esc_html__( 'No', 'affiliates-import' );
 			echo '</td>';
 			echo '</tr>';
 		}
 		echo '</table>';
+
+		echo '<p>';
+		_e( 'Without a <em>Column Declaration</em>, the entries in the imported file are expected to appear in the order as listed.', 'affiliates-import' );
+		echo ' ';
+		_e( 'A different order can be indicated with an explicit <em>Column Declaration</em>, by starting a line with the <code>@</code> symbol followed by one or more <em>Field Names</em>.', 'affiliates-import' );
+		echo '</p>';
+		echo '<p>';
+		echo '<label>';
+		_e( 'Example:', 'affiliates-import' );
+		echo '<br/>';
+		echo '<textarea rows="3" style="font-family:monospace;width:100%" readonly="readonly">';
+		echo '@first_name	last_name	user_email	user_login';
+		echo "\n";
+		echo 'John	Doe	test1@example.com	jdoe';
+		echo "\n";
+		echo 'Mary	River	affiliate@example.com	mriver';
+		echo "\n";
+		echo '</textarea>';
+		echo '</label>';
+		echo '</p>';
+
 		echo '</div>'; // .manage
 
 		affiliates_footer();
