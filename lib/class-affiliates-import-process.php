@@ -180,12 +180,13 @@ class Affiliates_Import_Process {
 											if ( in_array( $field, self::$fields ) ) {
 												$fields[] = $field;
 											} else {
-												if ( isset( $matches[1] ) && isset( $matches[1][$i] ) && ( $matches[1][$i] == 'meta:' ) ) {
-													if ( isset( $matches[2] ) && !empty( $matches[2][$i] ) ) {
-														$meta_key = $matches[2][$i];
-														$fields[] = 'meta:' . $meta_key;
-													}
-												}
+												// We don't handle meta: entries for now.
+												// if ( isset( $matches[1] ) && isset( $matches[1][$i] ) && ( $matches[1][$i] == 'meta:' ) ) {
+												//	if ( isset( $matches[2] ) && !empty( $matches[2][$i] ) ) {
+												//		$meta_key = $matches[2][$i];
+												//		$fields[] = 'meta:' . $meta_key;
+												//	}
+												// }
 											}
 											$i++;
 										}
@@ -243,11 +244,14 @@ class Affiliates_Import_Process {
 							}
 
 							// generate a password for new users
-							if ( empty( $userdata['user_pass'] ) ) {
+							if ( empty( $userdata['password'] ) && !empty( $userdata['user_pass'] ) ) {
+								$userdata['password'] = $userdata['user_pass'];
+							}
+							if ( empty( $userdata['password'] ) ) {
 								if ( !$user_exists ) {
-									$userdata['user_pass'] = wp_generate_password();
+									$userdata['password'] = wp_generate_password();
 								} else {
-									unset( $userdata['user_pass'] );
+									unset( $userdata['password'] );
 								}
 							}
 
@@ -340,18 +344,17 @@ class Affiliates_Import_Process {
 			function_exists( 'affiliates_user_is_affiliate' ) &&
 			class_exists( 'Affiliates_Registration' ) &&
 			method_exists( 'Affiliates_Registration', 'store_affiliate' ) &&
-			method_exists( 'Affiliates_Registration', 'create_affiliate' )
+			method_exists( 'Affiliates_Registration', 'create_affiliate' ) &&
+			method_exists( 'Affiliates_Registration', 'update_affiliate_user' )
 		) ) {
 			return null;
 		}
 
-		if ( empty( $userdata['user_email'] ) || empty( $userdata['user_pass'] ) ) {
+		if ( empty( $userdata['user_email'] ) || empty( $userdata['password'] ) ) {
 			return null;
 		}
 
 		$result = null;
-
-		$userdata['password'] = $userdata['user_pass']; // the create_affiliate() call below uses 'password'
 
 		if ( empty( $userdata['user_login'] ) ) {
 			$userdata['user_login'] = $userdata['user_email'];
@@ -363,12 +366,13 @@ class Affiliates_Import_Process {
 			$userdata['last_name'] = '';
 		}
 
-		$user_id = Affiliates_Registration::create_affiliate( $_userdata );
+		$user_id = Affiliates_Registration::create_affiliate( $userdata );
 		if ( !is_wp_error( $user_id ) ) {
 			if ( !affiliates_user_is_affiliate( $user_id ) ) {
 				add_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10, 2 );
-				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $_userdata, 'active' ) ) {
+				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $userdata, 'active' ) ) {
 					$result = $user_id;
+					Affiliates_Registration::update_affiliate_user( $affiliate_id, $userdata );
 				}
 				remove_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10 );
 			}
@@ -386,39 +390,28 @@ class Affiliates_Import_Process {
 		if ( ! (
 			function_exists( 'affiliates_user_is_affiliate' ) &&
 			class_exists( 'Affiliates_Registration' ) &&
-			method_exists( 'Affiliates_Registration', 'store_affiliate' )
+			method_exists( 'Affiliates_Registration', 'store_affiliate' ) &&
+			method_exists( 'Affiliates_Registration', 'update_affiliate_user' )
 		) ) {
 			return null;
 		}
 
 		$result = null;
 
-		$_userdata = array(
-			'user_login' => esc_sql( $userdata['user_login'] ),
-			'user_email' => esc_sql( $userdata['user_email'] )
-		);
-		if ( !empty( $userdata['first_name'] ) ) {
-			$_userdata['first_name'] = esc_sql( $userdata['first_name'] );
-		}
-		if ( !empty( $userdata['last_name'] ) ) {
-			$_userdata['last_name'] = esc_sql( $userdata['last_name'] );
-		}
-		if ( !empty( $userdata['user_url'] ) ) {
-			$_userdata['user_url'] = esc_sql( $userdata['user_url'] );
-		}
 		$user = false;
-		if ( !empty( $_userdata['user_email'] ) ) {
-			$user = get_user_by( 'email', $_userdata['user_email'] );
+		if ( !empty( $userdata['user_email'] ) ) {
+			$user = get_user_by( 'email', $userdata['user_email'] );
 		}
-		if ( !$user && !empty( $_userdata['user_login'] ) ) {
-			$user = get_user_by( 'login', $_userdata['user_login'] );
+		if ( !$user && !empty( $userdata['user_login'] ) ) {
+			$user = get_user_by( 'login', $userdata['user_login'] );
 		}
 		if ( $user !== false ) {
 			$user_id = $user->ID;
 			if ( !affiliates_user_is_affiliate( $user_id ) ) {
 				add_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10, 2 );
-				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $_userdata, 'active' ) ) {
+				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $userdata, 'active' ) ) {
 					$result = $user_id;
+					Affiliates_Registration::update_affiliate_user( $affiliate_id, $userdata );
 				}
 				remove_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10 );
 			}

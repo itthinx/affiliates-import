@@ -72,7 +72,7 @@ Please refer to the Documentation for details:
 * Added support for additional registration fields as defined under Affiliates > Settings > Registration.
 * Improved the admin section with additional field and file format information.
 * Updated the readme.txt (adds the "Requires PHP" tag, adds the Upgrade Notice section and provides a short example).
-* The "user_pass" Field Name has been dropped in favor of "password" used in the standard registration fields.
+* The "user_pass" Field Name has been deprecated in favor of "password" used in the standard registration fields.
 
 = 1.0.0 =
 * Initial release.
