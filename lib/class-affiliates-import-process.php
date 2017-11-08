@@ -61,6 +61,11 @@ class Affiliates_Import_Process {
 		}
 	}
 
+	/**
+	 * Returns an array with registration fields from Affiliates > Settings > Registration.
+	 *
+	 * @return array of affiliate registration fields
+	 */
 	public static function get_affiliates_registration_fields() {
 		$registration_fields = array();
 		if ( defined( 'AFFILIATES_CORE_LIB' ) ) {

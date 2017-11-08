@@ -69,7 +69,7 @@ Please refer to the Documentation for details:
 == Changelog ==
 
 = 1.1.0 =
-* Added support for additional registration fields as defined under Affiliates > Registration.
+* Added support for additional registration fields as defined under Affiliates > Settings > Registration.
 * Improved the admin section with additional field and file format information.
 * Updated the readme.txt (adds the "Requires PHP" tag, adds the Upgrade Notice section and provides a short example).
 
@@ -78,4 +78,4 @@ Please refer to the Documentation for details:
 
 == Upgrade Notice ==
 
-This version adds support for custom fields defined under Affiliates > Registration and improves the admin section under Affiliates > Import.
+This version adds support for custom fields defined under Affiliates > Settings > Registration and improves the admin section under Affiliates > Import.
