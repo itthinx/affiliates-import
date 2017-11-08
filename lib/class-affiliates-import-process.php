@@ -429,7 +429,7 @@ class Affiliates_Import_Process {
 	/**
 	 * Filters the aff_notify_admin option to avoid administrator notifications on imported affiliates.
 	 *
-	 * @return boolean false
+	 * @return null (can't return false as that won't take any effect)
 	 */
 	public static function pre_option_aff_notify_admin( $value, $option ) {
 		return null;
