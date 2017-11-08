@@ -376,12 +376,12 @@ class Affiliates_Import_Process {
 		$user_id = Affiliates_Registration::create_affiliate( $userdata );
 		if ( !is_wp_error( $user_id ) ) {
 			if ( !affiliates_user_is_affiliate( $user_id ) ) {
-				add_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10, 2 );
+				add_filter( 'pre_option_aff_notify_admin', array( __CLASS__, 'pre_option_aff_notify_admin' ), 10, 2 );
 				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $userdata, 'active' ) ) {
 					$result = $user_id;
 					Affiliates_Registration::update_affiliate_user( $affiliate_id, $userdata );
 				}
-				remove_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10 );
+				remove_filter( 'pre_option_aff_notify_admin', array( __CLASS__, 'pre_option_aff_notify_admin' ), 10 );
 			}
 		}
 		return $result;
@@ -415,12 +415,12 @@ class Affiliates_Import_Process {
 		if ( $user !== false ) {
 			$user_id = $user->ID;
 			if ( !affiliates_user_is_affiliate( $user_id ) ) {
-				add_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10, 2 );
+				add_filter( 'pre_option_aff_notify_admin', array( __CLASS__, 'pre_option_aff_notify_admin' ), 10, 2 );
 				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $userdata, 'active' ) ) {
 					$result = $user_id;
 					Affiliates_Registration::update_affiliate_user( $affiliate_id, $userdata );
 				}
-				remove_filter( 'option_aff_notify_admin', array( __CLASS__, 'option_aff_notify_admin' ), 10 );
+				remove_filter( 'pre_option_aff_notify_admin', array( __CLASS__, 'pre_option_aff_notify_admin' ), 10 );
 			}
 		}
 		return $result;
@@ -431,8 +431,8 @@ class Affiliates_Import_Process {
 	 *
 	 * @return boolean false
 	 */
-	public static function option_aff_notify_admin() {
-		return false;
+	public static function pre_option_aff_notify_admin( $value, $option ) {
+		return null;
 	}
 }
 Affiliates_Import_Process::init();
