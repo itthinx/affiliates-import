@@ -214,10 +214,6 @@ class Affiliates_Import_Admin {
 		echo __( 'In this case, enabling <em>Suppress warnings</em> is useful to avoid being alerted about existing entries.', 'affiliates-import' );
 		echo '</p>';
 
-		echo '<p>';
-		echo sprintf( __( 'The <a href="%s">Documentation</a> provides additional information.', 'affiliates-import' ), esc_url( 'http://docs.itthinx.com/document/affiliates-import/' ) );
-		echo '</p>';
-
 		echo '</div>';
 		echo '</form>';
 		echo '</div>';
@@ -230,6 +226,10 @@ class Affiliates_Import_Admin {
 		echo '</h2>';
 		echo '</div>';
 		echo '<div class="manage" style="padding:2em;margin-right:1em;">';
+
+		echo '<p>';
+		echo sprintf( __( 'Please also refer to the <a href="%s">Documentation</a>.', 'affiliates-import' ), esc_url( 'http://docs.itthinx.com/document/affiliates-import/' ) );
+		echo '</p>';
 
 		echo '<p>';
 		echo __( 'To import affiliates, use a plain text file with values separated by <em>tabs</em>.', 'affiliates-import' );
