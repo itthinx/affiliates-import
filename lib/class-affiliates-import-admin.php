@@ -214,6 +214,10 @@ class Affiliates_Import_Admin {
 		echo __( 'In this case, enabling <em>Suppress warnings</em> is useful to avoid being alerted about existing entries.', 'affiliates-import' );
 		echo '</p>';
 
+		echo '<p>';
+		echo sprintf( __( 'The <a href="%s">Documentation</a> provides additional information.', 'affiliates-import' ), esc_url( 'http://docs.itthinx.com/document/affiliates-import/' ) );
+		echo '</p>';
+
 		echo '</div>';
 		echo '</form>';
 		echo '</div>';
