@@ -39,19 +39,26 @@ class Affiliates_Import_Process {
 	private static $notify_users = true;
 
 	/**
-	 * Init hook to catch import file generation request and set up fields.
+	 * Init hook to catch import file generation request.
 	 */
 	public static function init() {
 		//add_action( 'init', array( __CLASS__, 'wp_init' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
-		if ( class_exists( 'Affiliates_Registration' ) && method_exists( 'Affiliates_Registration', 'get_affiliates_registration_fields' ) ) {
-			$registration_fields = self::get_affiliates_registration_fields();
-			foreach( $registration_fields as $name => $field ) {
-				if ( !in_array( $name, self::$fields ) ) {
-					self::$fields[] = $name;
-				}
+	}
+
+	/**
+	 * Set up and return the fields.
+	 *
+	 * @return array
+	 */
+	public static function get_fields() {
+		$registration_fields = self::get_affiliates_registration_fields();
+		foreach( $registration_fields as $name => $field ) {
+			if ( !in_array( $name, self::$fields ) ) {
+				self::$fields[] = $name;
 			}
 		}
+		return self::$fields;
 	}
 
 	/**
@@ -136,7 +143,7 @@ class Affiliates_Import_Process {
 							$limit = Affiliates_Import::DEFAULT_LIMIT;
 						}
 
-						$fields = self::$fields;
+						$fields = self::get_fields();
 						while( !feof( $h ) ) {
 
 							$line  = '';
@@ -169,7 +176,7 @@ class Affiliates_Import_Process {
 							if ( strpos( $line, '@' ) === 0 ) {
 								// reset?
 								if ( $line == '@' ) {
-									$fields = self::$fields;
+									$fields = self::get_fields();
 									self::$admin_messages[] = sprintf( __( 'Column declaration reset on line %d: <code>%s</code>', 'affiliates-import' ), $line_number, esc_html( implode( ', ', $fields ) ) );
 								} else {
 									preg_match_all( '/(meta:)?([a-zA-Z0-9_-]+)/', $line, $matches );
@@ -177,7 +184,7 @@ class Affiliates_Import_Process {
 										$fields = array();
 										$i = 0;
 										foreach( $matches[0] as $field ) {
-											if ( in_array( $field, self::$fields ) ) {
+											if ( in_array( $field, self::get_fields() ) ) {
 												$fields[] = $field;
 											} else {
 												// We don't handle meta: entries for now.
