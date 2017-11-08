@@ -278,6 +278,7 @@ class Affiliates_Import_Admin {
 		echo ' ';
 		_e( 'A different order can be indicated with an explicit <em>Column Declaration</em>, by starting a line with the <code>@</code> symbol followed by one or more <em>Field Names</em>.', 'affiliates-import' );
 		echo '</p>';
+
 		echo '<p>';
 		echo '<label>';
 		_e( 'Example:', 'affiliates-import' );
@@ -290,6 +291,10 @@ class Affiliates_Import_Admin {
 		echo 'Mary	River	affiliate@example.com	mriver';
 		echo "\n";
 		echo '</textarea>';
+		echo '<br/>';
+		echo '<span class="description">';
+		echo __( 'Note that the values are separated by <strong>tabs</strong>.', 'affiliates-import' );
+		echo '</span>';
 		echo '</label>';
 		echo '</p>';
 
