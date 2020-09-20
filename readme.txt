@@ -68,6 +68,10 @@ Please refer to the Documentation for details:
 
 == Changelog ==
 
+= 1.2.0 =
+* WordPress 5.5 compatible.
+* Fixed issue with notifications for new affiliates imported
+
 = 1.1.0 =
 * Added support for additional registration fields as defined under Affiliates > Settings > Registration.
 * Improved the admin section with additional field and file format information.

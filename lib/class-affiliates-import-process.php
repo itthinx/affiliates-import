@@ -375,6 +375,7 @@ class Affiliates_Import_Process {
 
 		$user_id = Affiliates_Registration::create_affiliate( $userdata );
 		if ( !is_wp_error( $user_id ) ) {
+			Affiliates_Registration::new_user_notification( $user_id, $userdata['password'] );
 			if ( !affiliates_user_is_affiliate( $user_id ) ) {
 				add_filter( 'pre_option_aff_notify_admin', array( __CLASS__, 'pre_option_aff_notify_admin' ), 10, 2 );
 				if ( $affiliate_id = Affiliates_Registration::store_affiliate( $user_id, $userdata, 'active' ) ) {
