@@ -2,4 +2,15 @@
 
 = 1.2.0 =
 * WordPress 5.5 compatible.
-* Fixed issue with notifications for new affiliates imported
+* Fixed issue with notifications for new affiliates imported.
+* Minimum WordPress 5.0 required.
+
+= 1.1.0 =
+* Added support for additional registration fields as defined under Affiliates > Settings > Registration.
+* Improved the admin section with additional field and file format information.
+* Updated the readme.txt (adds the "Requires PHP" tag, adds the Upgrade Notice section and provides a short example).
+* The "user_pass" Field Name has been deprecated in favor of "password" used in the standard registration fields.
+* Fixed option filter to avoid sending out administrator notifications for imported affiliates.
+
+= 1.0.0 =
+* Initial release.
