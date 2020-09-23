@@ -2,3 +2,4 @@
 
 = 1.2.0 =
 * WordPress 5.5 compatible.
+* Fixed issue with notifications for new affiliates imported
