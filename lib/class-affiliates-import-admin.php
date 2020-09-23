@@ -204,15 +204,23 @@ class Affiliates_Import_Admin {
 
 		printf( '<input type="hidden" name="action" value="%s" />', esc_attr( self::REQUEST_IMPORT ) );
 
-		echo '<p>';
+		echo '<ul>';
+		echo '<li>';
 		echo __( 'An import can not be undone! When in doubt, run the import in small batches or on a test installation first.', 'affiliates-import' );
-		echo '</p>';
-
-		echo '<p>';
+		echo '</li>';
+		echo '<li>';
 		echo __( 'To import very large sets, several imports using the same file repeatedly can be done.', 'affiliates-import' );
 		echo ' ';
 		echo __( 'In this case, enabling <em>Suppress warnings</em> is useful to avoid being alerted about existing entries.', 'affiliates-import' );
-		echo '</p>';
+		echo '</li>';
+		echo '<li>';
+		echo sprintf(
+			__( 'Use %sItthinx Mail Queue%s to speed up the import process and send out notifications progressively.', 'affiliates-import' ),
+			'<a href="https://www.itthinx.com/shop/itthinx-mail-queue/">',
+			'</a>'
+		);
+		echo '</li>';
+		echo '</ul>';
 
 		echo '</div>';
 		echo '</form>';
