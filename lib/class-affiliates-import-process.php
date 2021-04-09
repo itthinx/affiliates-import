@@ -303,7 +303,7 @@ class Affiliates_Import_Process {
 										$delta += intval( ( $bytes - $old_bytes ) * self::DELTA_F );
 									}
 									if ( $remaining < $delta ) {
-										self::$admin_messages[] = sprintf( __( 'Warning, stopped after line %d to avoid exhausting the available memory for PHP. Consider raising <a href="http://php.net/manual/en/ini.core.php#ini.memory-limit">memory_limit</a> or reducing the number of records imported.', 'affiliates-import' ), $line_number );
+										self::$admin_messages[] = sprintf( __( 'Warning, stopped after line %d to avoid exhausting the available memory for PHP. Consider raising <a href="https://php.net/manual/en/ini.core.php#ini.memory-limit">memory_limit</a> or reducing the number of records imported.', 'affiliates-import' ), $line_number );
 										break;
 									}
 								}
@@ -315,7 +315,7 @@ class Affiliates_Import_Process {
 										$execution_time = $resource_usage['ru_stime.tv_sec'] + $resource_usage['ru_utime.tv_sec'] + 2; // add 2 as top value for the sum of ru_stime.tv_usec and ru_utime.tv_usec
 										$d = ceil( $execution_time - $initial_execution_time );
 										if ( intval( $d * self::DELTA_F ) > ( $max_execution_time - $d ) ) {
-											self::$admin_messages[] = sprintf( __( 'Warning, stopped after line %d to avoid reaching the maximum execution time for PHP. Consider raising <a href="http://php.net/manual/en/info.configuration.php#ini.max-execution-time">max_execution_time</a> or reducing the number of records imported.', 'affiliates-import' ), $line_number );
+											self::$admin_messages[] = sprintf( __( 'Warning, stopped after line %d to avoid reaching the maximum execution time for PHP. Consider raising <a href="https://php.net/manual/en/info.configuration.php#ini.max-execution-time">max_execution_time</a> or reducing the number of records imported.', 'affiliates-import' ), $line_number );
 											break;
 										}
 									}
