@@ -1,11 +1,11 @@
 === Affiliates Import ===
 Contributors: itthinx, proaktion
-Donate link: http://www.itthinx.com/shop/
+Donate link: https://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, import, affiliate plugin, affiliates plugin
 Requires at least: 5.0
-Tested up to: 5.5
+Tested up to: 5.7
 Requires PHP: 5.6.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv3
 
 Import affiliate accounts with [Affiliates](https://wordpress.org/plugins/affiliates/), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).
@@ -18,7 +18,7 @@ It is an extension and requires one of these to import affiliates on your site f
 
 It supports custom fields as defined under _Affiliates > Registation_.
 
-For detailed usage instructions, please refer to the [Documentation](http://docs.itthinx.com/document/affiliates-import/).
+For detailed usage instructions, please refer to the [Documentation](https://docs.itthinx.com/document/affiliates-import/).
 
 For bulk imports where email notifications to new users imported are enabled, we recommend to use [Itthinx Mail Queue](https://www.itthinx.com/shop/itthinx-mail-queue/) to speed up the import process and send out notifications progressively.
 
@@ -39,7 +39,7 @@ Requirements:
 
 Documentation:
 
-- [Affiliates Import](http://docs.itthinx.com/document/affiliates-import/)
+- [Affiliates Import](https://docs.itthinx.com/document/affiliates-import/)
 
 == Installation ==
 
@@ -54,7 +54,7 @@ You can also upload and extract them in your site's `/wp-content/plugins/` direc
 
 = Where can I find the documentation for this tool? =
 
-The documentation is located at [Affiliates Import](http://docs.itthinx.com/document/affiliates-import/).
+The documentation is located at [Affiliates Import](https://docs.itthinx.com/document/affiliates-import/).
 
 = What plugins are required to import affiliates with this tool? =
 
@@ -67,7 +67,7 @@ You can use any of these:
 
 Please refer to the Documentation for details:
 
-- [Affiliates Import](http://docs.itthinx.com/document/affiliates-import/)
+- [Affiliates Import](https://docs.itthinx.com/document/affiliates-import/)
 
 == Changelog ==
 

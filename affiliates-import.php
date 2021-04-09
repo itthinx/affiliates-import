@@ -2,7 +2,7 @@
 /**
  * affiliates-import.php
  *
- * Copyright (c) 2017-2020 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2017-2021 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -19,12 +19,12 @@
  * @since affiliates-import 1.0.0
  *
  * Plugin Name: Affiliates Import
- * Plugin URI: http://www.itthinx.com/plugins/affiliates-ninja-forms/
+ * Plugin URI: https://www.itthinx.com/plugins/affiliates-import/
  * Description: Import affiliate accounts with <a href="https://wordpress.org/plugins/affiliates/">Affiliates</a>, <a href="https://www.itthinx.com/shop/affiliates-pro/">Affiliates Pro</a> and <a href="https://www.itthinx.com/shop/affiliates-enterprise/">Affiliates Enterprise</a>.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: itthinx
- * Author URI: http://www.itthinx.com/
- * Donate-Link: http://www.itthinx.com/shop/affiliates-enterprise/
+ * Author URI: https://www.itthinx.com/
+ * Donate-Link: https://www.itthinx.com/shop/
  * License: GPLv3
  */
 
@@ -32,7 +32,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AFFILIATES_IMPORT_PLUGIN_VERSION', '1.2.0' );
+define( 'AFFILIATES_IMPORT_PLUGIN_VERSION', '1.3.0' );
 
 /**
  * Plugin boot.

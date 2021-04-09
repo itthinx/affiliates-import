@@ -236,7 +236,7 @@ class Affiliates_Import_Admin {
 		echo '<div class="manage" style="padding:2em;margin-right:1em;">';
 
 		echo '<p>';
-		echo sprintf( __( 'Please also refer to the <a href="%s">Documentation</a>.', 'affiliates-import' ), esc_url( 'http://docs.itthinx.com/document/affiliates-import/' ) );
+		echo sprintf( __( 'Please also refer to the <a href="%s">Documentation</a>.', 'affiliates-import' ), esc_url( 'https://docs.itthinx.com/document/affiliates-import/' ) );
 		echo '</p>';
 
 		echo '<p>';
