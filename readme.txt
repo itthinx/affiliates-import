@@ -3,9 +3,9 @@ Contributors: itthinx, proaktion
 Donate link: http://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, import, affiliate plugin, affiliates plugin
 Requires at least: 5.0
-Tested up to: 5.5
+Tested up to: 5.7
 Requires PHP: 5.6.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv3
 
 Import affiliate accounts with [Affiliates](https://wordpress.org/plugins/affiliates/), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).

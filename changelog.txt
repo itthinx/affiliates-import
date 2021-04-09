@@ -1,5 +1,8 @@
 == Affiliates Import by itthinx - changelog.txt ==
 
+= 1.3.0 =
+* WordPress 5.7 compatible.
+
 = 1.2.0 =
 * WordPress 5.5 compatible.
 * Fixed issue with notifications for new affiliates imported.
