@@ -1,5 +1,8 @@
 == Affiliates Import by itthinx - changelog.txt ==
 
+= 2.0.0 =
+* WordPress 6.8 compatible.
+
 = 1.4.0 =
 * WordPress 6.0 compatible.
 * Requires at least WordPress 5.6.
