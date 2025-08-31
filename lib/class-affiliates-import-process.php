@@ -313,14 +313,16 @@ class Affiliates_Import_Process {
 								}
 
 								// time guard
-								if ( function_exists( 'getrusage' ) ) {
-									$resource_usage = getrusage();
-									if ( isset( $resource_usage['ru_utime.tv_sec'] ) ) {
-										$execution_time = $resource_usage['ru_stime.tv_sec'] + $resource_usage['ru_utime.tv_sec'] + 2; // add 2 as top value for the sum of ru_stime.tv_usec and ru_utime.tv_usec
-										$d = ceil( $execution_time - $initial_execution_time );
-										if ( intval( $d * self::DELTA_F ) > ( $max_execution_time - $d ) ) {
-											self::$admin_messages[] = sprintf( __( 'Warning, stopped after line %d to avoid reaching the maximum execution time for PHP. Consider raising <a href="https://php.net/manual/en/info.configuration.php#ini.max-execution-time">max_execution_time</a> or reducing the number of records imported.', 'affiliates-import' ), $line_number );
-											break;
+								if ( intval( $max_execution_time ) > 0 ) {
+									if ( function_exists( 'getrusage' ) ) {
+										$resource_usage = getrusage();
+										if ( isset( $resource_usage['ru_utime.tv_sec'] ) ) {
+											$execution_time = $resource_usage['ru_stime.tv_sec'] + $resource_usage['ru_utime.tv_sec'] + 2; // add 2 as top value for the sum of ru_stime.tv_usec and ru_utime.tv_usec
+											$d = ceil( $execution_time - $initial_execution_time );
+											if ( intval( $d * self::DELTA_F ) > ( $max_execution_time - $d ) ) {
+												self::$admin_messages[] = sprintf( __( 'Warning, stopped after line %d to avoid reaching the maximum execution time for PHP. Consider raising <a href="https://php.net/manual/en/info.configuration.php#ini.max-execution-time">max_execution_time</a> or reducing the number of records imported.', 'affiliates-import' ), $line_number );
+												break;
+											}
 										}
 									}
 								}

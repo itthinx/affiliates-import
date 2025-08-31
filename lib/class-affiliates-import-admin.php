@@ -40,6 +40,7 @@ class Affiliates_Import_Admin {
 	public static function init() {
 		if ( current_user_can( AFFILIATES_ADMINISTER_OPTIONS ) ) {
 			add_action( 'affiliates_admin_menu', array( __CLASS__, 'affiliates_admin_menu' ) );
+			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 			add_action( 'init', array( __CLASS__, 'wp_init' ) );
 		}
 	}
@@ -59,16 +60,14 @@ class Affiliates_Import_Admin {
 		$pages[] = $page;
 		add_action( 'admin_print_styles-' . $page, 'affiliates_admin_print_styles' );
 		add_action( 'admin_print_scripts-' . $page, 'affiliates_admin_print_scripts' );
-		//add_action( 'load-' . $page, array( __CLASS__, 'load' ) );
 	}
 
 	/**
 	 * Registers the importer script and style.
-	 * Currently not used.
 	 */
-	public static function load() {
-		wp_register_script( 'affiliates-import', POST_GENERATOR_PLUGIN_URL . '/js/affiliates-import.js', array( 'jquery' ), AFFILIATES_IMPORT_PLUGIN_VERSION, true );
-		wp_register_style( 'affiliates-import', POST_GENERATOR_PLUGIN_URL . '/css/affiliates-import.css', array(), AFFILIATES_IMPORT_PLUGIN_VERSION );
+	public static function admin_enqueue_scripts() {
+		// wp_register_script( 'affiliates-import', AFFILIATES_IMPORT_PLUGIN_URL . '/js/affiliates-import.js', array( 'jquery' ), AFFILIATES_IMPORT_PLUGIN_VERSION, true );
+		wp_register_style( 'affiliates-import', AFFILIATES_IMPORT_PLUGIN_URL . '/css/affiliates-import.css', array(), AFFILIATES_IMPORT_PLUGIN_VERSION );
 	}
 
 	/**
@@ -77,17 +76,17 @@ class Affiliates_Import_Admin {
 	public static function wp_init() {
 		// @todo needs work - currently not used
 		// AJAX request handler.
-// 		if (
-// 			isset( $_REQUEST['importer'] ) &&
-// 			wp_verify_nonce( $_REQUEST['importer'], 'affiliates-import-js' )
-// 		) {
-// 			$options = get_option( Affiliates_Import::PLUGIN_OPTIONS, array() );
-// 			$per_run = isset( $options['per-run'] ) ? intval( $options['per-run'] ) : self::DEFAULT_PER_RUN;
-// 			$n = self::run( $per_run );
-// 			$result = array( 'total' => $n );
-// 			echo json_encode( $result );
-// 			exit;
-// 		}
+		// if (
+		// 	isset( $_REQUEST['importer'] ) &&
+		// 	wp_verify_nonce( $_REQUEST['importer'], 'affiliates-import-js' )
+		// ) {
+		// 	$options = get_option( Affiliates_Import::PLUGIN_OPTIONS, array() );
+		// 	$per_run = isset( $options['per-run'] ) ? intval( $options['per-run'] ) : self::DEFAULT_PER_RUN;
+		// 	$n = self::run( $per_run );
+		// 	$result = array( 'total' => $n );
+		// 	echo json_encode( $result );
+		// 	exit;
+		// }
 		if ( isset( $_REQUEST['action'] ) && ( $_REQUEST['action'] === self::REQUEST_IMPORT ) ) {
 			if ( wp_verify_nonce( $_REQUEST[self::NONCE], self::NONCE_IMPORT_ACTION ) ) {
 				Affiliates_Import_Process::import_affiliates( !empty( $_REQUEST['test'] ) );
@@ -99,6 +98,9 @@ class Affiliates_Import_Admin {
 	 * Affiliates Import : admin section.
 	 */
 	public static function affiliates_admin_import() {
+
+		wp_enqueue_style( 'affiliates-import' );
+
 		if ( !current_user_can( AFFILIATES_ADMINISTER_OPTIONS ) ) {
 			wp_die( esc_html__( 'Access denied.', 'affiliates-import' ) );
 		}
@@ -118,11 +120,11 @@ class Affiliates_Import_Admin {
 		echo 'div.buttons { padding-top: 1em; }';
 		echo '</style>';
 
-		echo '<div>';
+		echo '<div class="affiliates-import">';
+
 		echo '<h2>';
 		esc_html_e( 'Import Affiliate Accounts', 'affiliates-import' );
 		echo '</h2>';
-		echo '</div>';
 
 		echo '<div class="manage" style="padding:2em;margin-right:1em;">';
 
@@ -133,7 +135,7 @@ class Affiliates_Import_Admin {
 		echo '<p>';
 		echo '<label>';
 		_e( 'Import users from file', 'affiliates-import' );
-		echo '<input type="file" name="file" />';
+		echo '<input class="file-import-dropzone" type="file" name="file" />';
 		echo '</label>';
 		echo ' ';
 		echo '<a href="#file-format-and-fields">';
@@ -311,6 +313,8 @@ class Affiliates_Import_Admin {
 		echo '</p>';
 
 		echo '</div>'; // .manage
+
+		echo '</div>'; // .affiliates-import
 
 		affiliates_footer();
 
