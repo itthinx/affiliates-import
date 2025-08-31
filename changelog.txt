@@ -1,5 +1,12 @@
 == Affiliates Import by itthinx - changelog.txt ==
 
+= 2.0.0 =
+* WordPress 6.8 compatible.
+* Requires at least WordPress 6.5.
+* Requires at least PHP 7.4.
+* Uses latest API (if available) with unlimited time for requests during imports.
+* Added file import dropzone.
+
 = 1.4.0 =
 * WordPress 6.0 compatible.
 * Requires at least WordPress 5.6.
