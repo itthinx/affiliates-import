@@ -1,8 +1,8 @@
 === Affiliates Import ===
 Contributors: itthinx, proaktion
 Donate link: https://www.itthinx.com/shop/
-Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, import, affiliate plugin, affiliates plugin
-Requires at least: 5.6
+Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing
+Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 5.6.0
 Stable tag: 2.0.0
