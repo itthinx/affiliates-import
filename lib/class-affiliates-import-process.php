@@ -100,6 +100,10 @@ class Affiliates_Import_Process {
 	 */
 	public static function import_affiliates( $test = false ) {
 
+		if ( function_exists( 'affiliates_request_execution_unlimited' ) ) {
+			affiliates_request_execution_unlimited();
+		}
+
 		$memory_limit = ini_get( 'memory_limit' );
 		preg_match( '/([0-9]+)(.)/', $memory_limit, $matches );
 		if ( isset( $matches[1] ) && isset( $matches[2] ) ) {
