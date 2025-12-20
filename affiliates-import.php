@@ -21,7 +21,7 @@
  * Plugin Name: Affiliates Import
  * Plugin URI: https://www.itthinx.com/plugins/affiliates-import/
  * Description: Import affiliate accounts with <a href="https://wordpress.org/plugins/affiliates/">Affiliates</a>, <a href="https://www.itthinx.com/shop/affiliates-pro/">Affiliates Pro</a> and <a href="https://www.itthinx.com/shop/affiliates-enterprise/">Affiliates Enterprise</a>.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * Author: itthinx
@@ -34,7 +34,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AFFILIATES_IMPORT_PLUGIN_VERSION', '2.0.0' );
+define( 'AFFILIATES_IMPORT_PLUGIN_VERSION', '2.1.0' );
 
 /**
  * Plugin boot.
